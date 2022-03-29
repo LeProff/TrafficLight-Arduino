@@ -1,14 +1,6 @@
-#include <ThreadHandler.h>
 #include <IRremote.hpp>
 
 int RECV_PIN = 7;
-bool normal_mode = true;
-bool power = false;
-bool green = false;
-bool yellow = false;
-bool red = false;
-bool pedestrian_allow = false;
-bool pedestrian_block = false;
 
 void setup()
 {
@@ -17,11 +9,6 @@ void setup()
 }
 
 void loop()
-{
-
-}
-
-void checkIR()
 {
   if (IrReceiver.decode())
   {
@@ -46,7 +33,8 @@ void checkIR()
             }
             break;
           case 0xE916FF00:
-            Serial.println("Key: ONE"); 
+            Serial.println("Key: ONE");
+            
             break;
           case 0xE619FF00:
             Serial.println("Key: TWO");
@@ -72,8 +60,7 @@ void checkIR()
           case 0xA55AFF00:
             Serial.println("Key: NINE");
             break;
-          case 0xAD52FF00:
-            Serial.println("Key: Zero");
+          case 0xAD52FF00: // Resets All Variables
             break;
           case 0xBD42FF00:
             Serial.println("Key: STAR");
@@ -84,7 +71,7 @@ void checkIR()
     }
       }
     IrReceiver.resume();
-  }  
+  }
 }
 
 /* LIST OF CODES [ELEGOO MINI REMOTE]
